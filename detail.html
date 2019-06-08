@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+<style>
+body {
+	width:600px;
+	height:700px;
+}
+
+#detail {
+	height:60%;
+	padding: 10px;
+	text-align:center;
+	border-bottom: solid 5px #ff8a65;
+	margin: 5px;
+}
+.title {
+	font-size: 30px;
+}
+.contacts{
+	padding: 0px 0px 0px 100px;
+	text-align:left;
+}
+#note{
+	text-align:left;
+	padding: 0px 10px;
+}
+.detail_logo{
+	height: 200px;
+}
+
+#users{
+	height:40%;
+	overflow-y:auto;
+	float:left;
+}
+
+.user{
+	display:inline-block;
+	text-align:center;
+}
+.sticker_img {
+	height: 100px;
+}
+</style>
+
+
+	</head>
+
+	<body class="orange lighten-5">
+		<div id="header">
+		</div>
+		<div id="detail">
+			
+			<img src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png" class="detail_logo">
+			<br>
+			<span class="title">カレーの伝道師</span>
+			<input type="button" id="add_sticker" value="Add" class="btn-floating btn-large cyan pulse">
+			<br>
+			<div class="contacts">
+				<div>
+					【URL】<a id="sticker_url" class="sticker_url" src="https://en.wikipedia.org/wiki/Bitcoin">https://test.curry.org/</a>
+				</div>
+				<div>
+					【MAIL】<a href="mailto:test@test.com" class="user_detail_mail">curry-do@test.com</a>
+				</div>
+			</div>
+			<p id="note">
+				備考：<br>
+				カレー屋に集う者たち
+			</p>
+		</div>
+		<p>
+		<div id="users" class="row">
+			<div id="other01" class="user col s3">
+				<a href="./mypage.html">
+					<img src="https://1.bp.blogspot.com/-HdrrDLMxxGs/Ws2uzOpk8yI/AAAAAAABLRY/9Td_5zg6Nf4eOkMiTbVdJ8qwuAfHfCltwCLcBGAs/s800/figure_dance.png" class="sticker_img">
+				</a>
+				<p>Team 12</p>
+			</div>
+			<div id="other02" class="user col s3">
+				<a href="./mypage.html">
+					<img src="https://3.bp.blogspot.com/--IJXuiGRidY/WNir5IfLk3I/AAAAAAABC28/81L3mxcIe9EoqcK9uqCXbVxZ4YO36JzlQCLcB/s170/animal_mitsubachi.png" class="sticker_img">
+				</a>
+				<p>ユーザ２</p>
+			</div>
+			<div id="other03" class="user col s3">
+				<a href="./mypage.html">
+					<img src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png" class="sticker_img">
+				</a>
+				<p>ユーザ３</p>
+			</div>
+			<div id="other04" class="user col s3">
+				<a href="./mypage.html">
+					<img src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png" class="sticker_img">
+				</a>
+				<p>ユーザ４</p>
+			</div>
+			<div id="other05" class="user col s3">
+				<a href="./mypage.html">
+					<img src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png" class="sticker_img">
+				</a>
+				<p>ユーザ５</p>
+			</div>
+		</div>
+		<!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</body>
+</html>
+
