@@ -19,8 +19,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	  
 	<script type="text/javascript">
-		$('#searchbutton').on('click', function() {
-			alert("ボタン押されました");
+		$('button').on('click', function() {
+			var $element = document.getElementById( "" );
+ 			$element.style.color = $color;
 		});
 	</script>
 		
@@ -33,22 +34,24 @@
         <div id="search" class="boxlist">
           <div id="searchbox">
             <input type="text" name="searchtext" size="10" maxlength="20" placeholder="Search">
-            <img src="image/sticker/search_icon.png">
+            <button>
+				<img src="image/sticker/search_icon.png">
+			</button>
           </div>
           <div id="search_lists" class="row">
-            <div class="col s4">
+            <div class="col s4 searchvisible">
 				<a href="detail.html">
 					<img src="image/sticker/1.png" alt="ブロックチェーン1" id="searchbutton">
 					<p>ブロックチェーン1</p>
 				</a>
             </div>
             <div class="col s4">
-				<a href="detail.html">
+				<a href="detail.html searchvisible">
 					<img src="image/sticker/2.png" alt="ブロックチェーン2">
 					<p>ブロックチェーン2</p>
 				</a>
             </div>
-            <div class="col s4">
+            <div class="col s4 searchvisible">
 				<a href="detail.html">
 					<img src="image/sticker/3.png" alt="ブロックチェーン3">
 					<p>ブロックチェーン3</p>
