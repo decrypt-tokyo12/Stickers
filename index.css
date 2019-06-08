@@ -116,3 +116,7 @@ iframe{
     right: 15px;
     top:5px;
 }
+
+.searchvisible{
+    visibility: hidden;
+}
