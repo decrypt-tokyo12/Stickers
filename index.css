@@ -1,0 +1,117 @@
+#index-contents{
+    background-color: #e0e0e0;
+}
+
+ul {
+  list-style: none;
+}
+
+#name{
+    color: white;
+}
+
+.boxlist{
+    /* padding: 15px; */
+    border-bottom: 1px white solid;
+    /* background-color: aquamarine; */
+}
+
+#user_info{
+    float: right;
+}
+
+#user_info p{
+    float:left;
+    position: absolute;
+    top: 10px;
+    right: 95px;
+    vertical-align: middle;
+}
+
+#user_info img{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+#top_header{
+    position: relative;
+    /*基準を画面の左上に*/
+    width: 100%;
+    background-color: #e57373;
+    z-index: 10;
+    padding-right: 15px; 
+}
+
+#header_logo .centerpos{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#index-contents{
+    width: 100%;
+}
+
+/* .search_list{
+    width:30%;
+} */
+
+.col{
+    /* width:30%; */
+    display: inline-block;
+    text-align: center;
+}
+
+.col img{
+    width:140px;
+}
+
+iframe{
+    width: 100%;
+    height: 1000px;
+}
+
+/*水平スクロール*/
+#near_lists, #follow_lists {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.near_list,.follow_list{
+    /* 横スクロール用 */
+    display: inline-block;
+    width: 30%;
+}
+
+.icons{
+    text-align: center;
+}
+
+#search_lists{
+    padding-top: 15px;
+}
+
+#search input{
+    padding:0 20px;
+    width:100%;
+}
+
+#user_info img{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+#searchbox{
+    position: relative;
+}
+
+#searchbox img{
+    position: absolute;
+    right: 50px;
+}
