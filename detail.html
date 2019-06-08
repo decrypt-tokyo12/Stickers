@@ -1,6 +1,342 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script>
+
+
+
+var acc
+// ここだけ新しいステッカーコントラクトのアドレスで切り替えればおｋ
+var sticker_contract = "0xabdf450e9f65ee51d2c32b620c665ebfdb053963";
+var sticker_abi=[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "add",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"name": "_image",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDescription",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getImage",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getName",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getStickerHolders",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "stickers",
+		"outputs": [
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"name": "image",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+var user_contract = "0x40da26927c9d53106c0ca47608a4fdadf1ab6d29";
+var user_abi =[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "msender",
+				"type": "address"
+			},
+			{
+				"name": "cont_addr",
+				"type": "address"
+			}
+		],
+		"name": "addsticker",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_Icon",
+				"type": "string"
+			},
+			{
+				"name": "_stickers",
+				"type": "address[]"
+			}
+		],
+		"name": "makesample",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "getIcon",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "getName",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "getStickers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+
+function obtainSticker(){
+    var mycontract=web3.eth.contract(user_abi).at(user_contract)
+
+    mycontract.addsticker(acc, sticker_contract, {
+        from: acc,
+        gas: 1000000,
+    },(error,result)=>
+    {
+        console.log(result)
+        console.log('add function called')
+        // username=result
+        // $('#stickerOwner').text('stickerOwner:'+result);
+
+        // console.log(username)
+    })
+}
+
+function getusername(){
+
+    var mycontract=web3.eth.contract(sticker_abi).at(sticker_contract)
+
+    mycontract.getOwner({
+        from: acc,
+        gas: 1000000,
+    },(error,result)=>
+    {
+        console.log(result)
+        // username=result
+        $('#stickerOwner').text(result);
+        // console.log(username)
+    })
+
+    mycontract.getName({
+        from: acc,
+        gas: 1000000,
+    },(error,result)=>
+    {
+        console.log(result)
+        // username=result
+        $('#stickerName').text(result);
+        // console.log(username)
+    })
+
+    mycontract.getDescription({
+        from: acc,
+        gas: 1000000,
+    },(error,result)=>
+    {
+        console.log(result)
+        // username=result
+        $('#stickerDescription').text(result);
+        // console.log(username)
+    })
+
+    mycontract.getImage({
+        from: acc,
+        gas: 1000000,
+    },(error,result)=>
+    {
+        console.log(result)
+        // username=result
+        // $('#userName').text('username:'+username);
+        $("#stickerImage").attr("src",result);
+        // console.log(username)
+    })
+
+}
+
+
+// $(window).load(function(){
+window.addEventListener('load', async function() {
+
+
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+        ethereum.enable();
+
+        web3.eth.getAccounts((error, result) => {
+            acc = result[0];
+            console.log(acc)
+            getusername()
+        })
+
+    }
+
+    else{
+        document.write('Install <a href="https://metamask.io">METAMASK</a>')
+    }
+})
+
+
+
+</script>
 		<!--Import Google Icon Font-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--Import materialize.css-->
@@ -8,7 +344,7 @@
 
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		
+
 <style>
 body {
 	width:600px;
@@ -30,7 +366,7 @@ body {
 	padding: 0px 0px 0px 100px;
 	text-align:left;
 }
-#note{
+.note{
 	text-align:left;
 	padding: 0px 10px;
 }
@@ -60,11 +396,11 @@ body {
 		<div id="header">
 		</div>
 		<div id="detail">
-			
-			<img src="./image/sticker/1.png" class="detail_logo">
+
+			<img src="" class="detail_logo" id="stickerImage">
 			<br>
-			<span class="title">NUXTJS</span>
-			<input type="button" id="add_sticker" value="Add" class="btn-floating btn-large cyan pulse">
+			<span class="title" id="stickerName"></span>
+			<input type="button" id="add_sticker" value="Add" class="btn-floating btn-large cyan pulse" onclick="obtainSticker();">
 			<br>
 			<div class="contacts">
 				<div>
@@ -74,10 +410,8 @@ body {
 					【MAIL】<a href="mailto:test@test.com" class="user_detail_mail">curry-do@test.com</a>
 				</div>
 			</div>
-			<p id="note">
-				備考：<br>
-				○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○
-			</p>
+			<p class="note">備考：</p>
+			<p id="stickerDescription" class="note"></p>
 		</div>
 		<p>
 		<div id="users" class="row">
@@ -134,4 +468,3 @@ body {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	</body>
 </html>
-
