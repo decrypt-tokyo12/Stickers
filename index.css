@@ -76,17 +76,17 @@ iframe{
 }
 
 /*水平スクロール*/
-#near_lists, #follow_lists {
+/* #near_lists, #follow_lists {
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
 
 .near_list,.follow_list{
-    /* 横スクロール用 */
+    /* 横スクロール用 
     display: inline-block;
     width: 30%;
-}
+} */
 
 .icons{
     text-align: center;
@@ -114,4 +114,5 @@ iframe{
 #searchbox img{
     position: absolute;
     right: 50px;
+    top:10px;
 }
