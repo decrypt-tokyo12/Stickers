@@ -1,5 +1,15 @@
 #index-contents{
-    background-color: #e0e0e0;
+    background-color: #FCFCFC;
+}
+
+a:hover {
+    opacity: 0.7
+}
+a:active {
+    opacity: 0.5
+}
+a p{
+    color:black;
 }
 
 ul {
@@ -24,21 +34,23 @@ ul {
     float:left;
     position: absolute;
     top: 10px;
-    right: 95px;
+    right: 65px;
     vertical-align: middle;
 }
 
 #user_info img{
     position: absolute;
-    top: 5px;
+    top: 15px;
     right: 10px;
+    width: 45px;
+    height: 45px;
 }
 
 #top_header{
     position: relative;
     /*基準を画面の左上に*/
     width: 100%;
-    background-color: #e57373;
+    background-color: #3B3B3B;
     z-index: 10;
     padding-right: 15px; 
 }
@@ -101,12 +113,6 @@ iframe{
     width:100%;
 }
 
-#user_info img{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-}
-
 #searchbox{
     position: relative;
 }
@@ -125,4 +131,8 @@ iframe{
     padding-left:15px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.boxlist a{
+    color: 
 }
