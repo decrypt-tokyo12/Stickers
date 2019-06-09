@@ -301,7 +301,8 @@
 										gas: 1000000,
 								},(error,result)=>
 								{
-									$('#stickerImage').attr("src",result);
+									// $('#stickerImage').attr("src",result);
+									$('#stickerImage').append('<img src="' + result + '" class="sticker_img">')
 							})
 								}
 		               })
@@ -465,7 +466,7 @@ a:active {
                     <!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
                 </div>
                 <div id="sticker" class="col s3">
-                    <a href="./detail.html"><img src="" class="sticker_img" id="stickerImage"></a>
+                    <a href="./detail.html" id="stickerImage"></a>
                     <!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
                 </div>
             </div>
