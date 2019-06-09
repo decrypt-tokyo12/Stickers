@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+		<script>
+
+		$(window).load(function(){
+
+		    if (typeof web3 !== 'undefined') {
+		        web3 = new Web3(web3.currentProvider);
+		        ethereum.enable();
+
+		        web3.eth.getAccounts((error, result) => {
+		                    acc = result[0];
+		                    getusername()
+		                })
+
+		    }else{
+		        document.write('Install <a href="https://metamask.io">METAMASK</a>')
+		    }
+		})
+
+		        var user_contract = "0x40da26927c9d53106c0ca47608a4fdadf1ab6d29";
+		        var abi=[
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "msender",
+						"type": "address"
+					},
+					{
+						"name": "cont_addr",
+						"type": "address"
+					}
+				],
+				"name": "addsticker",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "_Icon",
+						"type": "string"
+					},
+					{
+						"name": "_stickers",
+						"type": "address[]"
+					}
+				],
+				"name": "makesample",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "getIcon",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "getName",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "getStickers",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		]
+
+			var strabi=[
+				{
+					"constant": false,
+					"inputs": [
+						{
+							"name": "sender",
+							"type": "address"
+						}
+					],
+					"name": "add",
+					"outputs": [],
+					"payable": false,
+					"stateMutability": "nonpayable",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"name": "_name",
+							"type": "string"
+						},
+						{
+							"name": "_description",
+							"type": "string"
+						},
+						{
+							"name": "_image",
+							"type": "string"
+						}
+					],
+					"payable": false,
+					"stateMutability": "nonpayable",
+					"type": "constructor"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "getDescription",
+					"outputs": [
+						{
+							"name": "",
+							"type": "string"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "getImage",
+					"outputs": [
+						{
+							"name": "",
+							"type": "string"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "getName",
+					"outputs": [
+						{
+							"name": "",
+							"type": "string"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "getOwner",
+					"outputs": [
+						{
+							"name": "",
+							"type": "address"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "getStickerHolders",
+					"outputs": [
+						{
+							"name": "",
+							"type": "address[]"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "stickers",
+					"outputs": [
+						{
+							"name": "owner",
+							"type": "address"
+						},
+						{
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"name": "description",
+							"type": "string"
+						},
+						{
+							"name": "image",
+							"type": "string"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				}
+			]
+
+
+		        function getusername(){
+
+		        var mycontract=web3.eth.contract(abi).at(user_contract)
+
+
+		               mycontract.getName(acc,{
+		                                from: acc,
+		                                gas: 1000000,
+		                },(error,result)=>
+		                {
+		                    username=result
+		                    $('#userName').text(username);
+		               })
+
+		               mycontract.getIcon(acc,{
+		                                from: acc,
+		                                gas: 1000000,
+		                },(error,result)=>
+		                {
+		                    userIcon=result
+		                    // $('#userIcon').text('userIcon:'+userIcon);
+							console.log(userIcon);
+		                    $('#userIcon').attr("src",userIcon);
+		               })
+
+		               mycontract.getStickers(acc,{
+		                                from: acc,
+		                                gas: 1000000,
+		                },(error,result)=>
+
+		                {
+		                    userStickers=result
+		                    $('#userStickers').text('userStickers:'+userStickers);
+
+							for (var i=0; i<userStickers.length;i++){
+							    strcontract=web3.eth.contract(strabi).at(userStickers[i])
+								strcontract.getImage({
+		                                from: acc,
+										gas: 1000000,
+								},(error,result)=>
+								{
+									$('#stickerImage').attr("src",result);
+							})
+								}
+		               })
+
+
+
+
+		        }
+
+		    </script>
+		<!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<style>
+
+body {
+	  background-color: #e0e0e0;
+	width:600px;
+	height:700px;
+}
+
+#user{
+	height:30%;
+	clear: both;
+	text-align: center;
+	border-bottom: solid 5px #FFFFFF;
+	margin: 5px;
+
+}
+
+.user_detail_img{
+	height: 200px;
+}
+
+.detail_data {
+	text-align:left;
+	position: relative;
+	top: 40px;
+}
+.follow_button {
+	text-align:right;
+	position: relative;
+	top: 100px;
+}
+
+.detail_title, .user_detail_name, .user_detail_mail{
+	text-align: left;
+	font-size:15px;
+}
+
+
+#stickers{
+	height:70%;
+	float:left;
+	text-align:center;
+	overflow-y: auto;
+}
+
+.sticker_title{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+
+
+.sticker_img {
+	height: 100px;
+}
+</style>
+
+
+	</head>
+
+	<body>
+		<div id="user" class="row">
+			<div class="col s4">
+				<img src="image/face/6.png" class="circle user_detail_img" >
+			</div>
+			<div class="detail_data col s6">
+				<span class="detail_title">【USER】</span> <span id="" class="user_detail_name">アイドル</span>
+				<br>
+				<span class="detail_title">【MAIL】</span><a href="mailto:contact@decrypt.tokyo" class="user_detail_mail">contact@decrypt.tokyo</a>
+				<br>
+				<span class="detail_title">【COMMENT】</span><span></span>
+			</div>
+			<div class="col s2">
+				<input type="button" class="follow_button btn-floating btn-large cyan pulse" value="フォロー">
+			</div>
+		</div>
+		<div id="stickers" class="row">
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/1.png" class="sticker_img"  ></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/2.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/3.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/4.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/1.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/2.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/3.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/4.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/1.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/2.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="./image/sticker/3.png" class="sticker_img"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+			<div id="sticker" class="col s3">
+				<a href="./detail.html"><img src="" class="sticker_img" id="stickerImage"></a>
+				<!-- <p id="sticker_title_001" class="sticker_title">ステッカー</p> -->
+			</div>
+		</div>
+		<!--JavaScript at end of body for optimized loading-->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	</body>
+	
+</html>
