@@ -1,5 +1,7 @@
 # Stickers
 
+https://decrypt-tokyo12.github.io/Stickers/
+
 # Requirement
 
 - python3
