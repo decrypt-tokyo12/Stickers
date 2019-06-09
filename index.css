@@ -121,7 +121,7 @@ iframe{
     visibility: hidden;
 }
 
-.boxlist p{
+.eachtitle{
     padding-left:15px;
     font-size: 20px;
     font-weight: bold;
